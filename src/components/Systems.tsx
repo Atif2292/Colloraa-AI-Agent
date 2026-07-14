@@ -15,7 +15,6 @@ const systems = [
       'Smart Lead Scoring',
       'Auto Follow-up Sequences',
     ],
-    price: 'From ₹60,000',
   },
   {
     tag: 'System 2',
@@ -29,7 +28,6 @@ const systems = [
       'Reporting Dashboards',
       'Team Training & Handover',
     ],
-    price: 'From ₹1,00,000',
   },
   {
     tag: 'System 3',
@@ -43,7 +41,6 @@ const systems = [
       'On-page Chat Concierge',
       'Analytics & A/B Testing',
     ],
-    price: 'From ₹50,000',
   },
 ]
 
@@ -86,13 +83,10 @@ export default function Systems() {
                   ))}
                 </ul>
 
-                <div className="flex items-center justify-between border-t border-border/60 pt-6">
-                  <span className="font-heading text-lg font-bold">
-                    {s.price}
-                  </span>
+                <div className="border-t border-border/60 pt-6">
                   <Link
                     to="/contact"
-                    className={`inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold transition-all ${
+                    className={`inline-flex w-full items-center justify-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold transition-all ${
                       s.flagship
                         ? 'bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:shadow-[0_0_30px_hsl(var(--secondary)/0.5)]'
                         : 'border border-border hover:border-primary hover:text-primary'
