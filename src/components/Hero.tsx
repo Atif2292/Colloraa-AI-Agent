@@ -94,11 +94,13 @@ export default function Hero() {
         </div>
 
         <div
-          className="animate-hero-in hidden md:block"
+          className="animate-hero-in min-w-0"
           style={{ animationDelay: '200ms' }}
         >
-          <div className="animate-float">
-            <WorkflowDiagram />
+          <div className="animate-float min-w-0 overflow-x-auto pb-2 lg:overflow-visible lg:pb-0">
+            <div className="min-w-[560px]">
+              <WorkflowDiagram />
+            </div>
           </div>
         </div>
       </div>
