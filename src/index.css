@@ -71,13 +71,56 @@
     box-shadow: 0 0 40px hsl(var(--primary) / 0.1);
   }
   .btn-primary {
-    @apply inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 font-heading text-sm font-semibold text-primary-foreground transition-all duration-300 hover:shadow-[0_0_30px_hsl(var(--primary)/0.5)];
+    @apply inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 font-heading text-sm font-semibold text-primary-foreground;
+    box-shadow: 0 8px 24px -6px hsl(var(--primary) / 0.35);
+    transition:
+      transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow 0.35s ease,
+      background-color 0.3s ease;
   }
+  .btn-primary:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 14px 32px -6px hsl(var(--primary) / 0.55);
+  }
+  .btn-primary:active {
+    transform: translateY(0) scale(0.97);
+    box-shadow: 0 4px 14px -6px hsl(var(--primary) / 0.4);
+  }
+
   .btn-gradient {
-    @apply inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 font-heading text-sm font-semibold text-primary-foreground transition-all duration-300 hover:shadow-[0_0_30px_hsl(var(--primary)/0.55)] hover:-translate-y-0.5;
+    @apply inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 font-heading text-sm font-semibold text-primary-foreground;
+    box-shadow: 0 8px 24px -6px hsl(var(--primary) / 0.35);
+    transition:
+      transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow 0.35s ease,
+      background-color 0.3s ease;
   }
+  .btn-gradient:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 14px 32px -6px hsl(var(--primary) / 0.55);
+  }
+  .btn-gradient:active {
+    transform: translateY(0) scale(0.97);
+    box-shadow: 0 4px 14px -6px hsl(var(--primary) / 0.4);
+  }
+
   .btn-outline {
-    @apply inline-flex items-center gap-2 rounded-full bg-card px-7 py-3.5 font-heading text-sm font-semibold text-foreground transition-all duration-300 hover:bg-muted;
+    @apply inline-flex items-center gap-2 rounded-full bg-card px-7 py-3.5 font-heading text-sm font-semibold text-foreground;
+    box-shadow: 0 8px 20px -8px hsl(0 0% 0% / 0.6);
+    transition:
+      transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow 0.35s ease,
+      background-color 0.3s ease,
+      border-color 0.3s ease;
+  }
+  .btn-outline:hover {
+    @apply bg-muted;
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 14px 28px -8px hsl(0 0% 0% / 0.7);
+  }
+  .btn-outline:active {
+    transform: translateY(0) scale(0.97);
+    box-shadow: 0 4px 12px -8px hsl(0 0% 0% / 0.6);
   }
 }
 
