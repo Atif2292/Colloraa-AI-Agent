@@ -1,5 +1,5 @@
 import Hero from '../components/Hero'
-import Industries from '../components/Industries'
+import RunningLines from '../components/RunningLines'
 import Problems from '../components/Problems'
 import Process from '../components/Process'
 import CtaBanner from '../components/CtaBanner'
@@ -10,7 +10,7 @@ export default function Home() {
     <>
       <PageMeta title="AI Automation & Voice Agent Agency" />
       <Hero />
-      <Industries />
+      <RunningLines />
       <Problems />
       <Process />
       <CtaBanner />

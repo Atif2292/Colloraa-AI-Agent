@@ -187,6 +187,19 @@
   animation: marquee 26s linear infinite;
 }
 
+/* Reverse-direction marquee for the second ribbon row */
+@keyframes marquee-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.animate-marquee-reverse {
+  animation: marquee-reverse 22s linear infinite;
+}
+
 /* Soft pulse for badges / CTAs */
 @keyframes chat-pulse {
   0%,
