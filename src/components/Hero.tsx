@@ -55,7 +55,7 @@ export default function Hero() {
               Book a Free Audit
               <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link to="/revenue-systems" className="btn-outline">
+            <Link to="/growth-systems" className="btn-outline">
               <Sparkles className="h-4 w-4 text-primary" />
               See Our Systems
             </Link>

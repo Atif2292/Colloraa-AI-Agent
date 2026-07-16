@@ -3,12 +3,12 @@ import Systems from '../components/Systems'
 import CtaBanner from '../components/CtaBanner'
 import PageMeta from '../components/PageMeta'
 
-export default function RevenueSystemsPage() {
+export default function GrowthSystemsPage() {
   return (
     <>
-      <PageMeta title="Revenue Systems" />
+      <PageMeta title="Growth Systems" />
       <PageHero
-        eyebrow="Revenue systems"
+        eyebrow="Growth systems"
         title={
           <>
             Pick the gap.

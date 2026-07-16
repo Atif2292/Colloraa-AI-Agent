@@ -1,14 +1,14 @@
 import PageHero from '../components/PageHero'
-import Solutions from '../components/Solutions'
+import Industries from '../components/Industries'
 import CtaBanner from '../components/CtaBanner'
 import PageMeta from '../components/PageMeta'
 
-export default function SolutionsPage() {
+export default function IndustriesPage() {
   return (
     <>
-      <PageMeta title="Solutions" />
+      <PageMeta title="Industries" />
       <PageHero
-        eyebrow="Solutions"
+        eyebrow="Industries"
         title={
           <>
             Built for your industry,
@@ -18,7 +18,7 @@ export default function SolutionsPage() {
         }
         subtitle="Every industry loses revenue differently — here's how our systems adapt to yours."
       />
-      <Solutions />
+      <Industries />
       <CtaBanner />
     </>
   )

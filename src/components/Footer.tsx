@@ -5,9 +5,9 @@ const columns = [
   {
     title: 'Pages',
     links: [
-      { label: 'Revenue Systems', to: '/revenue-systems' },
-      { label: 'AI Voice Agents', to: '/ai-voice-agents' },
-      { label: 'Solutions', to: '/solutions' },
+      { label: 'Growth Systems', to: '/growth-systems' },
+      { label: 'Voice AI', to: '/voice-ai' },
+      { label: 'Industries', to: '/industries' },
     ],
   },
   {

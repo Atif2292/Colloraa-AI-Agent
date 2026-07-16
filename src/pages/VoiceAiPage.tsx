@@ -3,12 +3,12 @@ import VoiceAgentFeatures from '../components/VoiceAgentFeatures'
 import CtaBanner from '../components/CtaBanner'
 import PageMeta from '../components/PageMeta'
 
-export default function AiVoiceAgentsPage() {
+export default function VoiceAiPage() {
   return (
     <>
-      <PageMeta title="AI Voice Agents" />
+      <PageMeta title="Voice AI" />
       <PageHero
-        eyebrow="AI voice agents"
+        eyebrow="Voice AI"
         title={
           <>
             A voice that never

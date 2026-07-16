@@ -31,7 +31,7 @@ export default function Problems() {
           </h2>
           <p className="mt-4 text-muted-foreground">
             Here's what's usually behind it.{' '}
-            <Link to="/revenue-systems" className="font-semibold text-primary hover:underline">
+            <Link to="/growth-systems" className="font-semibold text-primary hover:underline">
               See our fix
             </Link>
           </p>

@@ -9,7 +9,7 @@ import {
 } from 'lucide-react'
 import Reveal from './Reveal'
 
-const solutions = [
+const industries = [
   {
     icon: Building2,
     industry: 'Real Estate',
@@ -47,12 +47,12 @@ const solutions = [
   },
 ]
 
-export default function Solutions() {
+export default function Industries() {
   return (
     <section className="py-16">
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {solutions.map((s, i) => (
+          {industries.map((s, i) => (
             <Reveal key={s.industry} delay={(i % 3) * 120}>
               <div className="glow-card h-full p-8">
                 <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20">
