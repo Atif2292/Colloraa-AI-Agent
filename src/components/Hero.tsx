@@ -9,7 +9,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center overflow-hidden pt-36"
+      className="relative flex min-h-screen items-center overflow-hidden pt-28"
     >
       <div className="pointer-events-none absolute inset-0">
         <GlowBlob className="absolute -top-32 left-[10%] h-[420px] w-[420px]" />
@@ -28,7 +28,7 @@ export default function Hero() {
       </div>
 
       <div className="relative mx-auto grid w-full max-w-7xl gap-14 px-6 pb-20 lg:grid-cols-[2fr_3fr] lg:items-center">
-        <div className="animate-hero-in">
+        <div className="animate-hero-in flex flex-col items-center text-center lg:items-start lg:text-left">
           <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/60 px-4 py-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-primary animate-chat-pulse" />
             <span className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
@@ -50,7 +50,7 @@ export default function Hero() {
             interest — so nothing slips through your team's cracks.
           </p>
 
-          <div className="mb-12 flex flex-wrap items-center gap-4">
+          <div className="mb-12 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
             <Link to="/contact" className="btn-gradient">
               Book a Free Audit
               <ArrowRight className="h-4 w-4" />
@@ -61,7 +61,7 @@ export default function Hero() {
             </Link>
           </div>
 
-          <div className="mb-8 flex flex-wrap gap-2">
+          <div className="mb-8 flex flex-wrap justify-center gap-2 lg:justify-start">
             {badges.map((b) => (
               <span
                 key={b}
@@ -77,7 +77,7 @@ export default function Hero() {
             height="70"
             viewBox="0 0 90 70"
             fill="none"
-            className="text-foreground/70"
+            className="hidden text-foreground/70 lg:block"
             aria-hidden="true"
           >
             <path
