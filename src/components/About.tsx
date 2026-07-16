@@ -1,5 +1,6 @@
 import { Target, Search, LineChart } from 'lucide-react'
 import Reveal from './Reveal'
+import GlowBlob from './GlowBlob'
 
 const principles = [
   {
@@ -21,14 +22,18 @@ const principles = [
 
 export default function About() {
   return (
-    <section className="pb-16 pt-40 sm:pt-48">
-      <div className="mx-auto max-w-5xl px-6 text-center">
+    <section className="relative overflow-hidden pb-16 pt-40 sm:pt-48">
+      <div className="pointer-events-none absolute inset-0">
+        <GlowBlob className="absolute -top-32 left-1/2 h-[460px] w-[460px] -translate-x-1/2" />
+      </div>
+      <div className="relative mx-auto max-w-5xl px-6 text-center">
         <Reveal>
           <h2 className="mx-auto max-w-3xl font-heading text-4xl font-bold tracking-tight md:text-6xl">
             We learn the business
             <br />
             <span className="text-muted-foreground">before we touch the tech.</span>
           </h2>
+          <div className="shimmer-line mx-auto mt-6 w-40" />
         </Reveal>
       </div>
 

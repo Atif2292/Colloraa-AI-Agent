@@ -1,6 +1,7 @@
 import { ArrowRight, Sparkles } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import WorkflowDiagram from './WorkflowDiagram'
+import GlowBlob from './GlowBlob'
 
 const badges = ['Leads', 'Follow-up', 'Bookings', '24/7 Calls', 'WhatsApp']
 
@@ -11,7 +12,7 @@ export default function Hero() {
       className="relative flex min-h-screen items-center overflow-hidden pt-36"
     >
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-40 left-1/4 h-[500px] w-[500px] rounded-full bg-primary/10 blur-[140px]" />
+        <GlowBlob className="absolute -top-32 left-[10%] h-[420px] w-[420px]" />
         <div
           className="absolute inset-0 opacity-[0.3]"
           style={{
@@ -28,12 +29,14 @@ export default function Hero() {
 
       <div className="relative mx-auto grid w-full max-w-7xl gap-14 px-6 pb-20 lg:grid-cols-[2fr_3fr] lg:items-center">
         <div className="animate-hero-in">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/60 px-4 py-1.5">
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/60 px-4 py-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-primary animate-chat-pulse" />
             <span className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
               Built by Colloraa
             </span>
           </div>
+
+          <div className="shimmer-line mb-6 w-40" />
 
           <h1 className="mb-8 font-heading text-5xl font-bold leading-[1.06] tracking-tight md:text-6xl">
             Every unanswered lead

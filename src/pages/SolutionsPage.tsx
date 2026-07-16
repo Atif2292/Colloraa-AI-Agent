@@ -1,10 +1,12 @@
 import PageHero from '../components/PageHero'
 import Solutions from '../components/Solutions'
 import CtaBanner from '../components/CtaBanner'
+import PageMeta from '../components/PageMeta'
 
 export default function SolutionsPage() {
   return (
     <>
+      <PageMeta title="Solutions" />
       <PageHero
         eyebrow="Solutions"
         title={

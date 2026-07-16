@@ -215,3 +215,41 @@
 .animate-blink {
   animation: blink 1s step-end infinite;
 }
+
+/* Slow-spinning ambient conic glow, creatorsdream-style */
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin-slow 16s linear infinite;
+}
+
+/* Yellow "scan line" shimmer accent */
+@keyframes shimmer-line {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+.shimmer-line {
+  height: 2px;
+  background-image: linear-gradient(
+    90deg,
+    transparent,
+    hsl(var(--primary) / 0.9),
+    transparent
+  );
+  background-size: 60% 100%;
+  background-repeat: no-repeat;
+  animation: shimmer-line 3.2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-spin-slow,
+  .shimmer-line {
+    animation: none;
+  }
+}

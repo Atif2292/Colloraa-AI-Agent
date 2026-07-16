@@ -1,10 +1,12 @@
 import PageHero from '../components/PageHero'
 import Systems from '../components/Systems'
 import CtaBanner from '../components/CtaBanner'
+import PageMeta from '../components/PageMeta'
 
 export default function RevenueSystemsPage() {
   return (
     <>
+      <PageMeta title="Revenue Systems" />
       <PageHero
         eyebrow="Revenue systems"
         title={
