@@ -5,33 +5,20 @@
 // Sizing bumped up a notch for legibility — wider channel cards in
 // particular, since "WhatsApp" was overflowing its box before.
 
-const cardFill = 'hsl(0 0% 10%)'
+const cardFill = 'hsl(0 0% 9%)'
+const portFill = 'hsl(140 12% 15%)'
+const creamBorder = 'hsl(44 42% 90%)'
+const warmWhite = 'hsl(44 30% 95%)'
 const wireBlue = 'hsl(58 91% 53%)'
 const wirePurple = 'hsl(35 92% 55%)'
 const wireCyan = 'hsl(0 0% 85%)'
 const textDim = 'hsl(0 0% 65%)'
-
-function Glow({ x, y, w, h, color }: { x: number; y: number; w: number; h: number; color: string }) {
-  return (
-    <rect
-      x={x - 6}
-      y={y - 6}
-      width={w + 12}
-      height={h + 12}
-      rx="18"
-      fill={color}
-      opacity="0.28"
-      filter="url(#soft-glow)"
-    />
-  )
-}
 
 function NodeCard({
   x,
   y,
   w,
   h,
-  color,
   icon,
   title,
   subtitle,
@@ -49,11 +36,20 @@ function NodeCard({
 }) {
   const midY = y + h / 2
   return (
-    <g>
-      <Glow x={x} y={y} w={w} h={h} color={color} />
-      <rect x={x} y={y} width={w} height={h} rx={compact ? 12 : 16} fill={cardFill} />
+    <g filter="url(#card-shadow)">
+      <rect
+        x={x}
+        y={y}
+        width={w}
+        height={h}
+        rx={compact ? 12 : 16}
+        fill={cardFill}
+        stroke={creamBorder}
+        strokeOpacity="0.32"
+        strokeWidth="1.1"
+      />
       <g transform={`translate(${x + 14} ${midY - (subtitle ? 13 : 10)})`}>{icon}</g>
-      <text x={x + 46} y={subtitle ? midY - 4 : midY + 5} fontSize={compact ? 13 : 16} fontWeight="600" fill="hsl(210 40% 98%)">
+      <text x={x + 46} y={subtitle ? midY - 4 : midY + 5} fontSize={compact ? 13 : 16} fontWeight="600" fill={warmWhite}>
         {title}
       </text>
       {subtitle && (
@@ -67,9 +63,18 @@ function NodeCard({
 
 function PortCard({ x, y, w, h, icon, label }: { x: number; y: number; w: number; h: number; icon: React.ReactNode; label: string }) {
   return (
-    <g>
-      <Glow x={x} y={y} w={w} h={h} color={wirePurple} />
-      <rect x={x} y={y} width={w} height={h} rx="12" fill={cardFill} />
+    <g filter="url(#card-shadow)">
+      <rect
+        x={x}
+        y={y}
+        width={w}
+        height={h}
+        rx="12"
+        fill={portFill}
+        stroke={creamBorder}
+        strokeOpacity="0.3"
+        strokeWidth="1"
+      />
       <g transform={`translate(${x + w / 2 - 10} ${y + 9})`}>{icon}</g>
       <text x={x + w / 2} y={y + h - 9} fontSize="10.5" fontWeight="600" fill={textDim} textAnchor="middle">
         {label}
@@ -297,8 +302,8 @@ export default function WorkflowDiagram() {
         fontFamily="Inter, ui-sans-serif, system-ui"
       >
         <defs>
-          <filter id="soft-glow" x="-60%" y="-60%" width="220%" height="220%">
-            <feGaussianBlur stdDeviation="7" />
+          <filter id="card-shadow" x="-30%" y="-30%" width="160%" height="180%">
+            <feDropShadow dx="0" dy="4" stdDeviation="6" floodColor="#000" floodOpacity="0.5" />
           </filter>
           {[
             ['b', wireBlue],
@@ -353,7 +358,7 @@ export default function WorkflowDiagram() {
 
         <NodeCard x={180} y={206} w={150} h={68} color={wireBlue} icon={<WebhookIcon color={wireBlue} />} title="New lead" subtitle="Webhook trigger" />
 
-        <NodeCard x={375} y={192} w={235} h={96} color={wirePurple} icon={<BotIcon color={wirePurple} />} title="AI agent" subtitle="Extracts &amp; scores lead" />
+        <NodeCard x={375} y={192} w={235} h={96} color={wirePurple} icon={<BotIcon color={wirePurple} />} title="Power of AI" subtitle="Extracts &amp; scores lead" />
         <PortCard x={368} y={304} w={76} h={60} icon={<BrainIcon color={wirePurple} />} label="Chat model" />
         <PortCard x={454} y={304} w={76} h={60} icon={<DatabaseIcon color={wirePurple} />} label="Memory" />
         <PortCard x={540} y={304} w={76} h={60} icon={<WrenchIcon color={wirePurple} />} label="Tool" />
@@ -366,27 +371,30 @@ export default function WorkflowDiagram() {
         <NodeCard x={200} y={672} w={175} h={68} color={wirePurple} icon={<SheetIcon color={wirePurple} />} title="Log to CRM" subtitle="Google Sheets" />
 
         {/* ---- outcomes ---- */}
-        <g>
-          <rect x="414" y="414" width="232" height="332" rx="22" fill="url(#outcomesGrad)" opacity="0.16" />
-          <rect x="420" y="420" width="220" height="320" rx="18" fill="hsl(0 0% 8%)" />
+        <g filter="url(#card-shadow)">
+          <rect
+            x="420"
+            y="420"
+            width="220"
+            height="320"
+            rx="18"
+            fill="hsl(0 0% 8%)"
+            stroke={creamBorder}
+            strokeOpacity="0.32"
+            strokeWidth="1.1"
+          />
           <text x="530" y="450" fontSize="12" fontWeight="700" fill={textDim} textAnchor="middle" letterSpacing="1.2">
             THE RESULT
           </text>
           {OUTCOMES.map((o, i) => (
             <g key={o.label} transform={`translate(440 ${474 + i * 46})`}>
               {o.icon(wireBlue)}
-              <text x="30" y="15" fontSize="13.5" fontWeight="600" fill="hsl(210 40% 98%)">
+              <text x="30" y="15" fontSize="13.5" fontWeight="600" fill={warmWhite}>
                 {o.label}
               </text>
             </g>
           ))}
         </g>
-        <defs>
-          <linearGradient id="outcomesGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor={wireBlue} />
-            <stop offset="100%" stopColor={wirePurple} />
-          </linearGradient>
-        </defs>
       </svg>
     </div>
   )
