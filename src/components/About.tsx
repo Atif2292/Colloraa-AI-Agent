@@ -39,9 +39,9 @@ export default function About() {
 
       <div className="mx-auto mt-20 max-w-3xl px-6 text-center">
         <Reveal>
-          <p className="section-eyebrow mb-6">The Colloraa story</p>
+          <p className="section-eyebrow mb-6">The CloudAutoAI story</p>
           <p className="mb-5 leading-relaxed text-muted-foreground">
-            Colloraa started from a simple pattern we kept seeing: businesses
+            CloudAutoAI started from a simple pattern we kept seeing: businesses
             weren't short on effort, they were short on systems. Leads sat
             unanswered, teams re-did the same manual steps every week, and
             nobody had a clean way to see what it was actually costing them.

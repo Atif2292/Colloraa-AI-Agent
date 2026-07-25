@@ -62,7 +62,7 @@ export default function ContactForm() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <input type="hidden" name="_subject" value="New Colloraa lead" />
+                  <input type="hidden" name="_subject" value="New CloudAutoAI lead" />
                   <input type="hidden" name="_captcha" value="false" />
                   <div className="grid gap-4 sm:grid-cols-2">
                     <input

@@ -32,7 +32,7 @@ export default function Hero() {
           <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/60 px-4 py-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-primary animate-chat-pulse" />
             <span className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
-              Built by Colloraa
+              Built by CloudAutoAI
             </span>
           </div>
 
@@ -45,7 +45,7 @@ export default function Hero() {
           </h1>
 
           <p className="mb-10 max-w-xl text-lg leading-relaxed text-muted-foreground">
-            Colloraa designs AI voice agents, automations, and web systems
+            CloudAutoAI designs AI voice agents, automations, and web systems
             that respond, qualify, and follow up the moment a customer shows
             interest — so nothing slips through your team's cracks.
           </p>
