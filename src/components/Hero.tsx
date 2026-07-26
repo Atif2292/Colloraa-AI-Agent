@@ -1,6 +1,7 @@
 import { ArrowRight, Sparkles } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import WorkflowDiagram from './WorkflowDiagram'
+import WorkflowDiagramMobile from './WorkflowDiagramMobile'
 import GlowBlob from './GlowBlob'
 
 const badges = ['Leads', 'Follow-up', 'Bookings', '24/7 Calls', 'WhatsApp']
@@ -100,16 +101,12 @@ export default function Hero() {
           className="animate-hero-in min-w-0"
           style={{ animationDelay: '200ms' }}
         >
-          <div
-            className="animate-float min-w-0 overflow-x-auto pb-2 [mask-image:linear-gradient(to_right,transparent,black_20px,black_calc(100%-20px),transparent)] lg:overflow-visible lg:pb-0 lg:[mask-image:none]"
-          >
-            <div className="min-w-[560px]">
-              <WorkflowDiagram />
-            </div>
+          <div className="animate-float lg:hidden">
+            <WorkflowDiagramMobile />
           </div>
-          <p className="mt-2 text-center font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground lg:hidden">
-            Swipe to see the full flow →
-          </p>
+          <div className="animate-float hidden lg:block">
+            <WorkflowDiagram />
+          </div>
         </div>
       </div>
     </section>
