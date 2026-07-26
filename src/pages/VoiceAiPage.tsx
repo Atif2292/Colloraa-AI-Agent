@@ -6,7 +6,11 @@ import PageMeta from '../components/PageMeta'
 export default function VoiceAiPage() {
   return (
     <>
-      <PageMeta title="Voice AI" />
+      <PageMeta
+        title="AI Voice Agents"
+        description="Your AI voice agent answers, qualifies, and books every caller — in the language they called in, at any hour of the day or night."
+        path="/voice-ai"
+      />
       <PageHero
         eyebrow="Voice AI"
         title={

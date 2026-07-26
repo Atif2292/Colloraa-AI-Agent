@@ -100,11 +100,16 @@ export default function Hero() {
           className="animate-hero-in min-w-0"
           style={{ animationDelay: '200ms' }}
         >
-          <div className="animate-float min-w-0 overflow-x-auto pb-2 lg:overflow-visible lg:pb-0">
+          <div
+            className="animate-float min-w-0 overflow-x-auto pb-2 [mask-image:linear-gradient(to_right,transparent,black_20px,black_calc(100%-20px),transparent)] lg:overflow-visible lg:pb-0 lg:[mask-image:none]"
+          >
             <div className="min-w-[560px]">
               <WorkflowDiagram />
             </div>
           </div>
+          <p className="mt-2 text-center font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground lg:hidden">
+            Swipe to see the full flow →
+          </p>
         </div>
       </div>
     </section>

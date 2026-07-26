@@ -6,7 +6,11 @@ import PageMeta from '../components/PageMeta'
 export default function GrowthSystemsPage() {
   return (
     <>
-      <PageMeta title="Growth Systems" />
+      <PageMeta
+        title="Growth Systems"
+        description="Three AI-powered growth systems, each built to close one specific revenue leak — pick the one that matches where your business is losing the most."
+        path="/growth-systems"
+      />
       <PageHero
         eyebrow="Growth systems"
         title={

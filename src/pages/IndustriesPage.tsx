@@ -6,7 +6,11 @@ import PageMeta from '../components/PageMeta'
 export default function IndustriesPage() {
   return (
     <>
-      <PageMeta title="Industries" />
+      <PageMeta
+        title="Industries We Serve"
+        description="Every industry loses revenue differently — see how CloudAutoAI's AI automation and voice agent systems adapt to real estate, healthcare, legal, e-commerce, and more."
+        path="/industries"
+      />
       <PageHero
         eyebrow="Industries"
         title={

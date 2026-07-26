@@ -8,7 +8,11 @@ import PageMeta from '../components/PageMeta'
 export default function Home() {
   return (
     <>
-      <PageMeta title="AI Automation & Voice Agent Agency" />
+      <PageMeta
+        title="AI Automation & Voice Agent Agency"
+        description="CloudAutoAI builds AI voice agents, automations, and web systems that respond, qualify, and follow up the moment a customer shows interest — so no lead slips through the cracks."
+        path="/"
+      />
       <Hero />
       <RunningLines />
       <Problems />
