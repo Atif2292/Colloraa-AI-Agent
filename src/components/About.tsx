@@ -39,7 +39,7 @@ export default function About() {
 
       <div className="mx-auto mt-20 max-w-3xl px-6 text-center">
         <Reveal>
-          <p className="section-eyebrow mb-6">The CloudAutoAI story</p>
+          <p className="section-eyebrow mb-6">The <span className="normal-case">CloudAutoAI</span> story</p>
           <p className="mb-5 leading-relaxed text-muted-foreground">
             CloudAutoAI started from a simple pattern we kept seeing: businesses
             weren't short on effort, they were short on systems. Leads sat

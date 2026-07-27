@@ -33,7 +33,7 @@ export default function Hero() {
           <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/60 px-4 py-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-primary animate-chat-pulse" />
             <span className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
-              Built by CloudAutoAI
+              Built by <span className="normal-case">CloudAutoAI</span>
             </span>
           </div>
 
