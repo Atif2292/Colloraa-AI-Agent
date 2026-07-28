@@ -1,6 +1,6 @@
 import { ArrowRight, Sparkles } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import WorkflowDiagram from './WorkflowDiagram'
+import WorkflowDiagramRadar from './WorkflowDiagramRadar'
 import WorkflowDiagramMobile from './WorkflowDiagramMobile'
 import GlowBlob from './GlowBlob'
 
@@ -105,7 +105,7 @@ export default function Hero() {
             <WorkflowDiagramMobile />
           </div>
           <div className="animate-float hidden lg:block">
-            <WorkflowDiagram />
+            <WorkflowDiagramRadar />
           </div>
         </div>
       </div>
