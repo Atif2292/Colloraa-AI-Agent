@@ -108,13 +108,15 @@ export default function WorkflowDiagramRadar() {
         <circle cx={CX} cy={CY} r={OUTER_R} fill="none" stroke={ring} strokeWidth="1" strokeDasharray="2 6" />
         <circle cx={CX} cy={CY} r={MID_R} fill="none" stroke={ring} strokeWidth="1" strokeDasharray="2 6" />
 
-        {/* radar sweep — a fan of thin lines fading from bright (leading
-            edge) to transparent (trailing edge), rotating as one group.
-            A filled wedge with a linear gradient doesn't work here: the
-            gradient axis doesn't rotate with the angle, so it reads as a
-            flat solid triangle instead of a sweep. */}
+        {/* radar sweep — one smooth solid cone of light fading from a
+            bright leading edge to nothing at the trailing edge, like an
+            actual radar/lighthouse beam. Built from many thin *filled*
+            slices (not open lines, which read as separate spokes/rays
+            rather than one beam) with a squared opacity falloff so the
+            fade feels smooth rather than linear. SVG has no angular/conic
+            gradient primitive, so this is the standard way to fake one. */}
         {!reduced && (
-          <g className="cq-sweep" style={{ transformOrigin: `${CX}px ${CY}px` }}>
+          <g className="cq-sweep">
             <animateTransform
               attributeName="transform"
               type="rotate"
@@ -123,19 +125,19 @@ export default function WorkflowDiagramRadar() {
               dur={`${sweepDur}s`}
               repeatCount="indefinite"
             />
-            {Array.from({ length: 14 }).map((_, i) => {
-              const a = -90 - (i / 13) * 42
-              const p = polar(CX, CY, OUTER_R, a)
+            {Array.from({ length: 48 }).map((_, i) => {
+              const span = 42
+              const a1 = -90 - (i / 48) * span
+              const a2 = -90 - ((i + 1) / 48) * span
+              const p1 = polar(CX, CY, OUTER_R, a1)
+              const p2 = polar(CX, CY, OUTER_R, a2)
+              const t = i / 48
               return (
-                <line
+                <path
                   key={i}
-                  x1={CX}
-                  y1={CY}
-                  x2={p.x}
-                  y2={p.y}
-                  stroke={amber}
-                  strokeOpacity={0.5 * (1 - i / 13)}
-                  strokeWidth="2.5"
+                  d={`M ${CX} ${CY} L ${p1.x} ${p1.y} L ${p2.x} ${p2.y} Z`}
+                  fill={amber}
+                  fillOpacity={0.5 * (1 - t) * (1 - t)}
                 />
               )
             })}
