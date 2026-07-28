@@ -95,7 +95,14 @@ export default function WorkflowDiagramRadar() {
             <stop offset="0%" stopColor={yellow} stopOpacity="0.25" />
             <stop offset="100%" stopColor={yellow} stopOpacity="0" />
           </radialGradient>
+          {/* Defensive bound — if any animated element ever miscalculates
+              (e.g. a browser mishandling an SVG arc), this keeps it from
+              visibly escaping the diagram instead of failing silently. */}
+          <clipPath id="diagram-bounds">
+            <rect x="0" y="0" width="640" height="700" />
+          </clipPath>
         </defs>
+        <g clipPath="url(#diagram-bounds)">
 
         {/* outer + middle ring guides */}
         <circle cx={CX} cy={CY} r={OUTER_R} fill="none" stroke={ring} strokeWidth="1" strokeDasharray="2 6" />
@@ -148,13 +155,17 @@ export default function WorkflowDiagramRadar() {
           Extracts &amp; scores lead
         </text>
 
-        {/* capability ring — orbiting highlight dot + fixed labels */}
+        {/* capability ring — orbiting highlight dot + fixed labels.
+            Two half-circle arcs, not one near-360deg arc: a single arc
+            whose start/end points are almost identical is numerically
+            unstable in some renderers and can make the dot shoot off to
+            a wildly wrong position mid-animation. */}
         {!reduced && (
           <circle r="3.4" fill={amber}>
             <animateMotion
               dur="9s"
               repeatCount="indefinite"
-              path={`M ${polar(CX, CY, MID_R, 0).x} ${polar(CX, CY, MID_R, 0).y} A ${MID_R} ${MID_R} 0 1 1 ${polar(CX, CY, MID_R, -0.01).x} ${polar(CX, CY, MID_R, -0.01).y} Z`}
+              path={`M ${polar(CX, CY, MID_R, 0).x} ${polar(CX, CY, MID_R, 0).y} A ${MID_R} ${MID_R} 0 1 1 ${polar(CX, CY, MID_R, 180).x} ${polar(CX, CY, MID_R, 180).y} A ${MID_R} ${MID_R} 0 1 1 ${polar(CX, CY, MID_R, 0).x} ${polar(CX, CY, MID_R, 0).y}`}
             />
           </circle>
         )}
@@ -235,6 +246,7 @@ export default function WorkflowDiagramRadar() {
             </text>
           </g>
         ))}
+        </g>
       </svg>
     </div>
   )
