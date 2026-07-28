@@ -5,6 +5,23 @@
 // Sizing bumped up a notch for legibility — wider channel cards in
 // particular, since "WhatsApp" was overflowing its box before.
 
+import { useEffect, useState } from 'react'
+
+// SMIL (animateMotion/animate) ignores the CSS prefers-reduced-motion media
+// query entirely, so the travelling dots are gated here in JS instead.
+function usePrefersReducedMotion() {
+  const [reduced, setReduced] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  )
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const onChange = () => setReduced(mq.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+  return reduced
+}
+
 const cardFill = 'hsl(0 0% 9%)'
 const portFill = 'hsl(140 12% 15%)'
 const creamBorder = 'hsl(44 42% 90%)'
@@ -83,9 +100,43 @@ function PortCard({ x, y, w, h, icon, label }: { x: number; y: number; w: number
   )
 }
 
+// A travelling dot with no stroke of its own — layered on top of an
+// already-drawn static <path> to add the "signal flowing" effect without
+// touching the path's existing styling.
+function FlowDot({ d, color, delay, dur = 3, reduced }: { d: string; color: string; delay: number; dur?: number; reduced: boolean }) {
+  if (reduced) return null
+  return (
+    <circle r="3.2" fill={color}>
+      <animateMotion dur={`${dur}s`} begin={`${delay}s`} repeatCount="indefinite" path={d} />
+      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur={`${dur}s`} begin={`${delay}s`} repeatCount="indefinite" />
+    </circle>
+  )
+}
+
+// A soft ring that flashes briefly on a node — staggered across the whole
+// diagram so the highlight reads as one wave passing through the system,
+// in step with the FlowDot/Wire dots travelling the same path.
+function Pulse({ x, y, w, h, rx, delay, reduced }: { x: number; y: number; w: number; h: number; rx: number; delay: number; reduced: boolean }) {
+  if (reduced) return null
+  return (
+    <rect
+      x={x}
+      y={y}
+      width={w}
+      height={h}
+      rx={rx}
+      fill="none"
+      stroke={warmWhite}
+      strokeWidth="1.6"
+      className="cq-pulse"
+      style={{ animationDelay: `${delay}s` }}
+    />
+  )
+}
+
 // A wire with an animated pulse travelling along it — the same moving-dot
 // technique used across the site's other diagrams.
-function Wire({ d, color, dashed = false, delay = 0, marker = true }: { d: string; color: string; dashed?: boolean; delay?: number; marker?: boolean }) {
+function Wire({ d, color, dashed = false, delay = 0, marker = true, reduced = false }: { d: string; color: string; dashed?: boolean; delay?: number; marker?: boolean; reduced?: boolean }) {
   const markerId = color === wireBlue ? 'b' : color === wirePurple ? 'p' : 'c'
   return (
     <>
@@ -98,7 +149,7 @@ function Wire({ d, color, dashed = false, delay = 0, marker = true }: { d: strin
         fill="none"
         markerEnd={marker ? `url(#arrow-${markerId})` : undefined}
       />
-      {!dashed && (
+      {!dashed && !reduced && (
         <circle r="3.4" fill={color}>
           <animateMotion dur="3s" begin={`${delay}s`} repeatCount="indefinite" path={d} />
           <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.9;1" dur="3s" begin={`${delay}s`} repeatCount="indefinite" />
@@ -279,6 +330,7 @@ const OUTCOMES: { label: string; icon: (c: string) => React.ReactNode }[] = [
 
 export default function WorkflowDiagram() {
   const trigTargets = [214, 225, 236, 247, 258]
+  const reduced = usePrefersReducedMotion()
 
   return (
     <div className="relative overflow-hidden rounded-3xl bg-card/60 p-4">
@@ -301,6 +353,13 @@ export default function WorkflowDiagram() {
         aria-label="AI lead automation diagram: channels feed an AI agent that scores and routes leads, ending in business outcomes"
         fontFamily="Inter, ui-sans-serif, system-ui"
       >
+        <style>{`
+          @keyframes cq-pulse { 0%, 92%, 100% { opacity: 0; } 4%, 8% { opacity: 1; } }
+          .cq-pulse { animation: cq-pulse 3s ease-in-out infinite; }
+          @media (prefers-reduced-motion: reduce) {
+            .cq-pulse { animation: none !important; opacity: 0 !important; }
+          }
+        `}</style>
         <defs>
           <filter id="card-shadow" x="-30%" y="-30%" width="160%" height="180%">
             <feDropShadow dx="0" dy="4" stdDeviation="6" floodColor="#000" floodOpacity="0.5" />
@@ -323,28 +382,35 @@ export default function WorkflowDiagram() {
             d={`M135 ${c.y + 24} C 155 ${c.y + 24}, 165 ${trigTargets[i]}, 180 ${trigTargets[i]}`}
             color={wireBlue}
             delay={i * 0.4}
+            reduced={reduced}
           />
         ))}
-        <Wire d="M330 240 L375 240" color={wireBlue} delay={0.3} />
+        <Wire d="M330 240 L375 240" color={wireBlue} delay={0.3} reduced={reduced} />
         <Wire dashed d="M406 288 L406 304" color={wirePurple} />
         <Wire dashed d="M492 288 L492 304" color={wirePurple} />
         <Wire dashed d="M578 288 L578 304" color={wirePurple} />
 
         {/* ---- connector: row 1 (agent) -> row 2 (decision), routed through the clear
              band between the ports row and the branches/outcomes row below ---- */}
-        <Wire d="M610 240 L650 240 L650 392 L85 392 L85 546" color={wirePurple} delay={1.2} />
+        <Wire d="M610 240 L650 240 L650 392 L85 392 L85 546" color={wirePurple} delay={1.2} reduced={reduced} />
 
         {/* ---- row 2: decision -> branches (shared stub, then split) ---- */}
         <path d="M160 580 L190 580" stroke={wireCyan} strokeOpacity="0.55" strokeWidth="1.8" fill="none" />
         <path d="M190 580 L190 454 L200 454" fill="none" stroke={wireCyan} strokeOpacity="0.55" strokeWidth="1.8" markerEnd="url(#arrow-c)" />
         <path d="M190 580 L200 580" fill="none" stroke={wireCyan} strokeOpacity="0.55" strokeWidth="1.8" markerEnd="url(#arrow-c)" />
         <path d="M190 580 L190 706 L200 706" fill="none" stroke={wireCyan} strokeOpacity="0.55" strokeWidth="1.8" markerEnd="url(#arrow-c)" />
+        <FlowDot d="M190 580 L190 454 L200 454" color={wireCyan} delay={2.0} reduced={reduced} />
+        <FlowDot d="M190 580 L200 580" color={wireCyan} delay={2.15} reduced={reduced} />
+        <FlowDot d="M190 580 L190 706 L200 706" color={wireCyan} delay={2.3} reduced={reduced} />
 
         {/* branches -> merge -> outcomes */}
         <path d="M375 454 L400 454 L400 580" fill="none" stroke={wireBlue} strokeOpacity="0.45" strokeWidth="1.8" />
         <path d="M375 580 L400 580" fill="none" stroke={wireBlue} strokeOpacity="0.45" strokeWidth="1.8" />
         <path d="M375 706 L400 706 L400 580" fill="none" stroke={wireBlue} strokeOpacity="0.45" strokeWidth="1.8" />
-        <Wire d="M400 580 L420 580" color={wireBlue} delay={1.8} />
+        <FlowDot d="M375 454 L400 454 L400 580" color={wireBlue} delay={2.45} reduced={reduced} />
+        <FlowDot d="M375 580 L400 580" color={wireBlue} delay={2.6} reduced={reduced} />
+        <FlowDot d="M375 706 L400 706 L400 580" color={wireBlue} delay={2.75} reduced={reduced} />
+        <Wire d="M400 580 L420 580" color={wireBlue} delay={2.9} reduced={reduced} />
 
         {/* branch tags */}
         <text x="168" y="436" fontSize="11" fontWeight="600" fill={wireCyan}>high</text>
@@ -355,20 +421,32 @@ export default function WorkflowDiagram() {
         {CHANNELS.map((c) => (
           <NodeCard key={c.label} x={10} y={c.y} w={125} h={48} color={wireBlue} icon={c.icon(wireBlue)} title={c.label} compact />
         ))}
+        {CHANNELS.map((c, i) => (
+          <Pulse key={c.label} x={10} y={c.y} w={125} h={48} rx={12} delay={i * 0.15} reduced={reduced} />
+        ))}
 
         <NodeCard x={180} y={206} w={150} h={68} color={wireBlue} icon={<WebhookIcon color={wireBlue} />} title="New lead" subtitle="Webhook trigger" />
+        <Pulse x={180} y={206} w={150} h={68} rx={16} delay={0.9} reduced={reduced} />
 
         <NodeCard x={375} y={192} w={235} h={96} color={wirePurple} icon={<BotIcon color={wirePurple} />} title="Power of AI" subtitle="Extracts &amp; scores lead" />
+        <Pulse x={375} y={192} w={235} h={96} rx={16} delay={1.3} reduced={reduced} />
         <PortCard x={368} y={304} w={76} h={60} icon={<BrainIcon color={wirePurple} />} label="Chat model" />
         <PortCard x={454} y={304} w={76} h={60} icon={<DatabaseIcon color={wirePurple} />} label="Memory" />
         <PortCard x={540} y={304} w={76} h={60} icon={<WrenchIcon color={wirePurple} />} label="Tool" />
+        <Pulse x={368} y={304} w={76} h={60} rx={12} delay={1.55} reduced={reduced} />
+        <Pulse x={454} y={304} w={76} h={60} rx={12} delay={1.65} reduced={reduced} />
+        <Pulse x={540} y={304} w={76} h={60} rx={12} delay={1.75} reduced={reduced} />
 
         {/* ---- row 2: decision, branches, outcomes ---- */}
         <NodeCard x={10} y={546} w={150} h={68} color={wireCyan} icon={<BranchIcon color={wireCyan} />} title="Score tier?" subtitle="Switch node" />
+        <Pulse x={10} y={546} w={150} h={68} rx={16} delay={2.0} reduced={reduced} />
 
         <NodeCard x={200} y={420} w={175} h={68} color={wireBlue} icon={<CalendarIcon color={wireBlue} />} title="Book meeting" subtitle="Google Calendar" />
         <NodeCard x={200} y={546} w={175} h={68} color={wireCyan} icon={<MessageIcon color={wireCyan} />} title="Notify sales" subtitle="Slack message" />
         <NodeCard x={200} y={672} w={175} h={68} color={wirePurple} icon={<SheetIcon color={wirePurple} />} title="Log to CRM" subtitle="Google Sheets" />
+        <Pulse x={200} y={420} w={175} h={68} rx={16} delay={2.3} reduced={reduced} />
+        <Pulse x={200} y={546} w={175} h={68} rx={16} delay={2.45} reduced={reduced} />
+        <Pulse x={200} y={672} w={175} h={68} rx={16} delay={2.6} reduced={reduced} />
 
         {/* ---- outcomes ---- */}
         <g filter="url(#card-shadow)">
@@ -395,6 +473,7 @@ export default function WorkflowDiagram() {
             </g>
           ))}
         </g>
+        <Pulse x={420} y={420} w={220} h={320} rx={18} delay={2.9} reduced={reduced} />
       </svg>
     </div>
   )
