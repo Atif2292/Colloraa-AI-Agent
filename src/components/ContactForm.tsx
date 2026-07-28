@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { ArrowRight, Mail, Phone } from 'lucide-react'
 import Reveal from './Reveal'
 
-const FORM_ENDPOINT = 'https://formsubmit.co/ajax/mohdatif2291@gmail.com'
+const FORM_ENDPOINT = 'https://formsubmit.co/ajax/cloudautoaiofficial@gmail.com'
 
 export default function ContactForm() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
@@ -45,7 +45,7 @@ export default function ContactForm() {
                 <div className="space-y-3 text-sm text-muted-foreground">
                   <div className="flex items-center gap-3">
                     <Mail className="h-4 w-4 text-primary" />
-                    mohdatif2291@gmail.com
+                    cloudautoaiofficial@gmail.com
                   </div>
                   <div className="flex items-center gap-3">
                     <Phone className="h-4 w-4 text-primary" />
@@ -101,7 +101,7 @@ export default function ContactForm() {
                   {status === 'error' && (
                     <p className="text-center text-sm text-destructive">
                       Something went wrong — email us directly at
-                      mohdatif2291@gmail.com.
+                      cloudautoaiofficial@gmail.com.
                     </p>
                   )}
                 </form>

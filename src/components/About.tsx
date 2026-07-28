@@ -57,10 +57,10 @@ export default function About() {
           <p className="mt-8 text-sm italic text-muted-foreground">
             Have a specific problem in mind? Reach out directly at{' '}
             <a
-              href="mailto:mohdatif2291@gmail.com"
+              href="mailto:cloudautoaiofficial@gmail.com"
               className="font-semibold not-italic text-primary hover:underline"
             >
-              mohdatif2291@gmail.com
+              cloudautoaiofficial@gmail.com
             </a>
             .
           </p>
