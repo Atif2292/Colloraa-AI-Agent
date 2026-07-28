@@ -1,4 +1,4 @@
-import { ArrowRight, Sparkles } from 'lucide-react'
+import { ArrowRight, Sparkles, PlayCircle } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import WorkflowDiagramRadar from './WorkflowDiagramRadar'
 import WorkflowDiagramMobile from './WorkflowDiagramMobile'
@@ -42,13 +42,13 @@ export default function Hero() {
           <h1 className="mb-8 font-heading text-5xl font-bold leading-[1.06] tracking-tight md:text-6xl">
             Every unanswered lead
             <br />
-            is <span className="gradient-text">money walking</span> out.
+            is <span className="gradient-text">revenue walking</span> out the door.
           </h1>
 
           <p className="mb-10 max-w-xl text-lg leading-relaxed text-muted-foreground">
             CloudAutoAI designs AI voice agents, automations, and web systems
             that respond, qualify, and follow up the moment a customer shows
-            interest — so nothing slips through your team's cracks.
+            interest — so no opportunity goes cold.
           </p>
 
           <div className="mb-12 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
@@ -60,6 +60,11 @@ export default function Hero() {
               <Sparkles className="h-4 w-4 text-primary" />
               See Our Systems
             </Link>
+            {/* TODO: replace with the real call-recording link once it's shared */}
+            <a href="#" className="btn-outline">
+              <PlayCircle className="h-4 w-4 text-primary" />
+              Watch a Real Call
+            </a>
           </div>
 
           <div className="mb-8 flex flex-wrap justify-center gap-2 lg:justify-start">

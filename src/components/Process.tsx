@@ -1,4 +1,5 @@
-import { Search, Blocks, Rocket, LineChart } from 'lucide-react'
+import { Search, Blocks, Rocket, LineChart, ArrowUpRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import Reveal from './Reveal'
 
 const steps = [
@@ -28,6 +29,23 @@ export default function Process() {
   return (
     <section className="py-16">
       <div className="mx-auto max-w-7xl px-6">
+        <Reveal>
+          <div className="mb-12 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
+            <div>
+              <p className="section-eyebrow mb-3">How it works</p>
+              <h2 className="font-heading text-3xl font-bold">
+                Experience a live system in 7 days.
+              </h2>
+            </div>
+            <Link
+              to="/growth-systems"
+              className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border px-5 py-2.5 text-sm font-semibold transition-all hover:border-primary hover:text-primary"
+            >
+              View Our Systems
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </Reveal>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, i) => (
             <Reveal key={s.title} delay={i * 120}>

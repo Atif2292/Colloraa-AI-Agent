@@ -1,46 +1,47 @@
-import { Check, ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, PlayCircle } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import Reveal from './Reveal'
 
 const systems = [
   {
     tag: 'System 1',
-    flagship: false,
-    title: 'Revenue Capture',
-    blurb: 'Contact, qualify, and book leads in seconds.',
-    features: [
-      'AI Voice Agent (24/7)',
-      'WhatsApp & SMS Bot',
-      'Instant CRM Sync',
-      'Smart Lead Scoring',
-      'Auto Follow-up Sequences',
-    ],
+    title: 'Inbound AI Agent',
+    nickname: 'The Answer',
+    blurb: 'Every call picked up in 2 rings — day, night, weekends, doesn’t matter.',
+    how: 'Trained on your actual call flow. Answers questions, qualifies the caller, books them straight into your calendar — sounds like a real front desk, not a menu of "press 1 for..."',
+    stat: 'Avg. response time: under 3 seconds',
   },
   {
     tag: 'System 2',
-    flagship: true,
-    title: 'Ops Efficiency',
-    blurb: 'Eliminate 20–40 hours of manual work weekly.',
-    features: [
-      'Workflow Process Mapping',
-      '3–5 Core Automations',
-      'Custom n8n / Make Logic',
-      'Reporting Dashboards',
-      'Team Training & Handover',
-    ],
+    title: 'Outbound AI Agent',
+    nickname: 'The Follow-Up',
+    blurb: 'Old leads, missed calls, form fills that went cold — this calls them back before you even think to.',
+    how: 'Triggers automatically on any unresponded lead, calls or texts within minutes, and keeps trying on a smart schedule instead of one-and-done.',
+    stat: 'Re-engages leads you’d already written off',
   },
   {
     tag: 'System 3',
-    flagship: false,
-    title: 'Web Capture',
-    blurb: 'Turn passive website visitors into qualified leads.',
-    features: [
-      'High-Converting Landing Pages',
-      'Frictionless Lead Capture',
-      'Automated WhatsApp Triggers',
-      'On-page Chat Concierge',
-      'Analytics & A/B Testing',
-    ],
+    title: 'WhatsApp Chatbot',
+    nickname: 'The Second Line',
+    blurb: 'Where your leads actually are. Most Indian customers won’t call — they’ll WhatsApp. This one never leaves them on read.',
+    how: 'Answers FAQs, sends pricing, shares availability, and hands off to a human the moment it’s needed — instant, not "we’ll get back to you."',
+    stat: 'Runs 24/7, replies in seconds',
+  },
+  {
+    tag: 'System 4',
+    title: 'AI Lead Qualification',
+    nickname: 'The Filter',
+    blurb: 'Not every lead deserves your time. This one figures out who’s ready to buy before you pick up the phone.',
+    how: 'Asks the right questions upfront — budget, timeline, intent — and scores each lead so your team only chases the ones worth chasing.',
+    stat: 'Stop wasting hours on leads that were never going to convert',
+  },
+  {
+    tag: 'System 5',
+    title: 'Appointment Booking',
+    nickname: 'The Close',
+    blurb: 'No back-and-forth. No "does Tuesday work?" thread that dies after message three.',
+    how: 'Self-serve booking across call, WhatsApp, or web — synced straight to your calendar, confirmed instantly, zero manual entry.',
+    stat: 'From interested to booked in one step',
   },
 ]
 
@@ -51,48 +52,43 @@ export default function Systems() {
         <div className="grid gap-6 lg:grid-cols-3">
           {systems.map((s, i) => (
             <Reveal key={s.title} delay={i * 120}>
-              <div
-                className={`relative flex h-full flex-col rounded-2xl border p-8 transition-all duration-300 ${
-                  s.flagship
-                    ? 'border-primary/60 bg-card shadow-[0_0_50px_hsl(var(--primary)/0.15)]'
-                    : 'border-border bg-card/60 hover:border-primary/40'
-                }`}
-              >
-                {s.flagship && (
-                  <span className="absolute -top-3 left-8 rounded-full bg-gradient-to-r from-primary to-secondary px-3 py-1 text-xs font-bold text-primary-foreground">
-                    FLAGSHIP
-                  </span>
-                )}
+              <div className="flex h-full flex-col rounded-2xl border border-border bg-card/60 p-8 transition-all duration-300 hover:border-primary/40">
                 <span className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
                   {s.tag}
                 </span>
-                <h3 className="mb-2 mt-3 font-heading text-2xl font-bold">
+                <h3 className="mb-1 mt-3 font-heading text-2xl font-bold">
                   {s.title}
                 </h3>
-                <p className="mb-6 text-sm text-muted-foreground">{s.blurb}</p>
+                <p className="mb-4 text-sm font-semibold text-primary">
+                  {s.nickname}
+                </p>
+                <p className="mb-5 text-sm text-foreground/90">{s.blurb}</p>
 
                 <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                  Key features
+                  How it works
                 </p>
-                <ul className="mb-8 flex-1 space-y-2.5">
-                  {s.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2.5 text-sm">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                      <span className="text-foreground/90">{f}</span>
-                    </li>
-                  ))}
-                </ul>
+                <p className="mb-6 flex-1 text-sm leading-relaxed text-muted-foreground">
+                  {s.how}
+                </p>
 
-                <div className="border-t border-border/60 pt-6">
+                <p className="mb-6 text-sm font-semibold text-secondary">
+                  → {s.stat}
+                </p>
+
+                <div className="flex gap-3 border-t border-border/60 pt-6">
+                  {/* TODO: replace with the real call-recording link once it's shared */}
+                  <a
+                    href="#"
+                    className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-full border border-border px-4 py-2.5 text-sm font-semibold transition-all hover:border-primary hover:text-primary"
+                  >
+                    <PlayCircle className="h-4 w-4" />
+                    Watch it work
+                  </a>
                   <Link
                     to="/contact"
-                    className={`inline-flex w-full items-center justify-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold transition-all ${
-                      s.flagship
-                        ? 'bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:shadow-[0_0_30px_hsl(var(--secondary)/0.5)]'
-                        : 'border border-border hover:border-primary hover:text-primary'
-                    }`}
+                    className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-full bg-gradient-to-r from-primary to-secondary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:shadow-[0_0_30px_hsl(var(--secondary)/0.5)]"
                   >
-                    Explore
+                    See Pricing
                     <ArrowUpRight className="h-4 w-4" />
                   </Link>
                 </div>
