@@ -27,22 +27,6 @@ const systems = [
     how: 'Answers FAQs, sends pricing, shares availability, and hands off to a human the moment it’s needed — instant, not "we’ll get back to you."',
     stat: 'Runs 24/7, replies in seconds',
   },
-  {
-    tag: 'System 4',
-    title: 'AI Lead Qualification',
-    nickname: 'The Filter',
-    blurb: 'Not every lead deserves your time. This one figures out who’s ready to buy before you pick up the phone.',
-    how: 'Asks the right questions upfront — budget, timeline, intent — and scores each lead so your team only chases the ones worth chasing.',
-    stat: 'Stop wasting hours on leads that were never going to convert',
-  },
-  {
-    tag: 'System 5',
-    title: 'Appointment Booking',
-    nickname: 'The Close',
-    blurb: 'No back-and-forth. No "does Tuesday work?" thread that dies after message three.',
-    how: 'Self-serve booking across call, WhatsApp, or web — synced straight to your calendar, confirmed instantly, zero manual entry.',
-    stat: 'From interested to booked in one step',
-  },
 ]
 
 export default function Systems() {
