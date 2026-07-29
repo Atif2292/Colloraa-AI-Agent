@@ -1,21 +1,16 @@
-// The CA monogram icon, kept in its original navy so it always reads
-// against a light backing plate — the site's near-black bg would wash
-// it out otherwise.
+// The site's own yellow "C" mark — reads fine directly against the dark
+// theme, so unlike earlier attempts it needs no light backing plate.
 export default function LogoMark({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 300 300" className={className} aria-hidden="true">
-      <g transform="translate(150,150) scale(0.792) translate(-151.2,-95.0)" fill="#0a1e42">
-        <path
-          d="M150.2 150.7 A75 75 0 1 1 150.2 39.3"
-          fill="none"
-          stroke="#0a1e42"
-          strokeWidth="38"
-          strokeLinecap="round"
-        />
-        <path d="M195.0 10.0 L 94.7 109.5 L 121.3 130.5 Z" />
-        <path d="M195.0 10.0 L 267.6 159.0 L 296.4 141.0 Z" />
-        <path d="M155.8 77.3 L 141.0 96.0 L 267.0 105.0 L 252.2 81.2 Z" />
-      </g>
+    <svg viewBox="0 0 64 64" className={className} aria-hidden="true">
+      <path
+        d="M44 20.5
+           A16 16 0 1 0 44 43.5"
+        fill="none"
+        stroke="#f4ed1a"
+        strokeWidth="8"
+        strokeLinecap="round"
+      />
     </svg>
   )
 }

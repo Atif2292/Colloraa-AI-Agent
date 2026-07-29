@@ -26,9 +26,7 @@ export default function Footer() {
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <Link to="/" className="mb-4 flex flex-col items-start gap-2">
-              <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#f4f5f7] p-2.5">
-                <LogoMark className="h-full w-full" />
-              </span>
+              <LogoMark className="h-10 w-10" />
               <span className="font-heading text-xl font-bold">CloudAutoAI</span>
             </Link>
             <p className="max-w-xs text-sm text-muted-foreground">
