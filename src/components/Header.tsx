@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import { Link, NavLink } from 'react-router-dom'
+import LogoMark from './LogoMark'
 
 const navLinks = [
   { label: 'Home', to: '/' },
@@ -18,6 +19,9 @@ export default function Header() {
     <header className="fixed inset-x-0 top-4 z-40 px-4 sm:top-6 sm:px-6">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 rounded-2xl border border-border/60 bg-card/90 px-5 py-3 backdrop-blur-xl">
         <Link to="/" className="flex shrink-0 items-center gap-2.5">
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#f4f5f7] p-1.5">
+            <LogoMark className="h-full w-full" />
+          </span>
           <span className="font-heading text-xl font-black tracking-tight">
             CloudAutoAI
           </span>
