@@ -8,6 +8,9 @@ type PageMetaProps = {
   title: string
   description: string
   path: string
+  /** Full literal <title> text, bypassing the "title — SITE_NAME" template
+   *  (used on the homepage so the brand name leads: "CloudAutoAI | ..."). */
+  rawTitle?: string
 }
 
 function setMetaTag(attr: 'name' | 'property', key: string, content: string) {
@@ -30,9 +33,9 @@ function setLinkTag(rel: string, href: string) {
   el.setAttribute('href', href)
 }
 
-export default function PageMeta({ title, description, path }: PageMetaProps) {
+export default function PageMeta({ title, description, path, rawTitle }: PageMetaProps) {
   useEffect(() => {
-    const fullTitle = `${title} — ${SITE_NAME}`
+    const fullTitle = rawTitle ?? `${title} — ${SITE_NAME}`
     const url = `${SITE_URL}${path}`
 
     const previousTitle = document.title
@@ -56,7 +59,7 @@ export default function PageMeta({ title, description, path }: PageMetaProps) {
     return () => {
       document.title = previousTitle
     }
-  }, [title, description, path])
+  }, [title, description, path, rawTitle])
 
   return null
 }

@@ -10,6 +10,7 @@ export default function Home() {
     <>
       <PageMeta
         title="AI Automation & Voice Agent Agency"
+        rawTitle="CloudAutoAI | AI Automation & Voice Agent Agency"
         description="CloudAutoAI builds AI voice agents, automations, and web systems that respond, qualify, and follow up the moment a customer shows interest — so no lead slips through the cracks."
         path="/"
       />

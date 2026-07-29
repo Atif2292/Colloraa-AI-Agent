@@ -40,6 +40,7 @@ export default function Hero() {
           <div className="shimmer-line mb-6 w-40" />
 
           <h1 className="mb-8 font-heading text-5xl font-bold leading-[1.06] tracking-tight md:text-6xl">
+            <span className="sr-only">CloudAutoAI: </span>
             Every unanswered lead
             <br />
             is <span className="gradient-text">revenue walking</span> out the door.
