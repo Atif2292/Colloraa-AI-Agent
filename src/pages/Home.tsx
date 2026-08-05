@@ -2,6 +2,7 @@ import Hero from '../components/Hero'
 import RunningLines from '../components/RunningLines'
 import Problems from '../components/Problems'
 import Process from '../components/Process'
+import ScrollingReviews from '../components/ScrollingReviews'
 import CtaBanner from '../components/CtaBanner'
 import PageMeta from '../components/PageMeta'
 
@@ -18,6 +19,7 @@ export default function Home() {
       <RunningLines />
       <Problems />
       <Process />
+      <ScrollingReviews />
       <CtaBanner />
     </>
   )
